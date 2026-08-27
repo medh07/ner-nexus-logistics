@@ -181,11 +181,13 @@ export function Select({
   value,
   onChange,
   options,
+  render,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   options: string[];
+  render?: (value: string) => string;
 }) {
   return (
     <label className="block">
@@ -197,10 +199,11 @@ export function Select({
       >
         {options.map((o) => (
           <option key={o} value={o} className="bg-surface text-foreground">
-            {o}
+            {render ? render(o) : o}
           </option>
         ))}
       </select>
     </label>
   );
 }
+
