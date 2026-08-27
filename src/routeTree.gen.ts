@@ -14,6 +14,7 @@ import { Route as AccessibilityMapRouteImport } from './routes/accessibility-map
 import { Route as CargoRouteImport } from './routes/cargo'
 import { Route as DemandForecastingRouteImport } from './routes/demand-forecasting'
 import { Route as FieldReportsRouteImport } from './routes/field-reports'
+import { Route as HubsRouteImport } from './routes/hubs'
 import { Route as IncidentsRouteImport } from './routes/incidents'
 import { Route as NetworkPerformanceRouteImport } from './routes/network-performance'
 import { Route as RiskPredictionRouteImport } from './routes/risk-prediction'
@@ -43,6 +44,11 @@ const DemandForecastingRoute = DemandForecastingRouteImport.update({
 const FieldReportsRoute = FieldReportsRouteImport.update({
   id: '/field-reports',
   path: '/field-reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HubsRoute = HubsRouteImport.update({
+  id: '/hubs',
+  path: '/hubs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IncidentsRoute = IncidentsRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/cargo': typeof CargoRoute
   '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
+  '/hubs': typeof HubsRoute
   '/incidents': typeof IncidentsRoute
   '/network-performance': typeof NetworkPerformanceRoute
   '/risk-prediction': typeof RiskPredictionRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/cargo': typeof CargoRoute
   '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
+  '/hubs': typeof HubsRoute
   '/incidents': typeof IncidentsRoute
   '/network-performance': typeof NetworkPerformanceRoute
   '/risk-prediction': typeof RiskPredictionRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/cargo': typeof CargoRoute
   '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
+  '/hubs': typeof HubsRoute
   '/incidents': typeof IncidentsRoute
   '/network-performance': typeof NetworkPerformanceRoute
   '/risk-prediction': typeof RiskPredictionRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/cargo'
     | '/demand-forecasting'
     | '/field-reports'
+    | '/hubs'
     | '/incidents'
     | '/network-performance'
     | '/risk-prediction'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/cargo'
     | '/demand-forecasting'
     | '/field-reports'
+    | '/hubs'
     | '/incidents'
     | '/network-performance'
     | '/risk-prediction'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/cargo'
     | '/demand-forecasting'
     | '/field-reports'
+    | '/hubs'
     | '/incidents'
     | '/network-performance'
     | '/risk-prediction'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   CargoRoute: typeof CargoRoute
   DemandForecastingRoute: typeof DemandForecastingRoute
   FieldReportsRoute: typeof FieldReportsRoute
+  HubsRoute: typeof HubsRoute
   IncidentsRoute: typeof IncidentsRoute
   NetworkPerformanceRoute: typeof NetworkPerformanceRoute
   RiskPredictionRoute: typeof RiskPredictionRoute
@@ -195,6 +208,13 @@ declare module '@tanstack/react-router' {
       path: '/field-reports'
       fullPath: '/field-reports'
       preLoaderRoute: typeof FieldReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hubs': {
+      id: '/hubs'
+      path: '/hubs'
+      fullPath: '/hubs'
+      preLoaderRoute: typeof HubsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/incidents': {
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   CargoRoute: CargoRoute,
   DemandForecastingRoute: DemandForecastingRoute,
   FieldReportsRoute: FieldReportsRoute,
+  HubsRoute: HubsRoute,
   IncidentsRoute: IncidentsRoute,
   NetworkPerformanceRoute: NetworkPerformanceRoute,
   RiskPredictionRoute: RiskPredictionRoute,
