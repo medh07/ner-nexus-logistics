@@ -15,6 +15,7 @@ import { Route as CargoRouteImport } from './routes/cargo'
 import { Route as DemandForecastingRouteImport } from './routes/demand-forecasting'
 import { Route as FieldReportsRouteImport } from './routes/field-reports'
 import { Route as IncidentsRouteImport } from './routes/incidents'
+import { Route as NetworkPerformanceRouteImport } from './routes/network-performance'
 import { Route as RiskPredictionRouteImport } from './routes/risk-prediction'
 import { Route as RouteIntelligenceRouteImport } from './routes/route-intelligence'
 import { Route as VehicleTrackingRouteImport } from './routes/vehicle-tracking'
@@ -49,6 +50,11 @@ const IncidentsRoute = IncidentsRouteImport.update({
   path: '/incidents',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NetworkPerformanceRoute = NetworkPerformanceRouteImport.update({
+  id: '/network-performance',
+  path: '/network-performance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RiskPredictionRoute = RiskPredictionRouteImport.update({
   id: '/risk-prediction',
   path: '/risk-prediction',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
   '/incidents': typeof IncidentsRoute
+  '/network-performance': typeof NetworkPerformanceRoute
   '/risk-prediction': typeof RiskPredictionRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
   '/incidents': typeof IncidentsRoute
+  '/network-performance': typeof NetworkPerformanceRoute
   '/risk-prediction': typeof RiskPredictionRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
   '/incidents': typeof IncidentsRoute
+  '/network-performance': typeof NetworkPerformanceRoute
   '/risk-prediction': typeof RiskPredictionRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/demand-forecasting'
     | '/field-reports'
     | '/incidents'
+    | '/network-performance'
     | '/risk-prediction'
     | '/route-intelligence'
     | '/vehicle-tracking'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/demand-forecasting'
     | '/field-reports'
     | '/incidents'
+    | '/network-performance'
     | '/risk-prediction'
     | '/route-intelligence'
     | '/vehicle-tracking'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/demand-forecasting'
     | '/field-reports'
     | '/incidents'
+    | '/network-performance'
     | '/risk-prediction'
     | '/route-intelligence'
     | '/vehicle-tracking'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   DemandForecastingRoute: typeof DemandForecastingRoute
   FieldReportsRoute: typeof FieldReportsRoute
   IncidentsRoute: typeof IncidentsRoute
+  NetworkPerformanceRoute: typeof NetworkPerformanceRoute
   RiskPredictionRoute: typeof RiskPredictionRoute
   RouteIntelligenceRoute: typeof RouteIntelligenceRoute
   VehicleTrackingRoute: typeof VehicleTrackingRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IncidentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/network-performance': {
+      id: '/network-performance'
+      path: '/network-performance'
+      fullPath: '/network-performance'
+      preLoaderRoute: typeof NetworkPerformanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/risk-prediction': {
       id: '/risk-prediction'
       path: '/risk-prediction'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemandForecastingRoute: DemandForecastingRoute,
   FieldReportsRoute: FieldReportsRoute,
   IncidentsRoute: IncidentsRoute,
+  NetworkPerformanceRoute: NetworkPerformanceRoute,
   RiskPredictionRoute: RiskPredictionRoute,
   RouteIntelligenceRoute: RouteIntelligenceRoute,
   VehicleTrackingRoute: VehicleTrackingRoute,
