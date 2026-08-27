@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccessibilityMapRouteImport } from './routes/accessibility-map'
 import { Route as CargoRouteImport } from './routes/cargo'
+import { Route as DemandForecastingRouteImport } from './routes/demand-forecasting'
 import { Route as FieldReportsRouteImport } from './routes/field-reports'
 import { Route as IncidentsRouteImport } from './routes/incidents'
 import { Route as RiskPredictionRouteImport } from './routes/risk-prediction'
@@ -31,6 +32,11 @@ const AccessibilityMapRoute = AccessibilityMapRouteImport.update({
 const CargoRoute = CargoRouteImport.update({
   id: '/cargo',
   path: '/cargo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemandForecastingRoute = DemandForecastingRouteImport.update({
+  id: '/demand-forecasting',
+  path: '/demand-forecasting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FieldReportsRoute = FieldReportsRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
   '/cargo': typeof CargoRoute
+  '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
   '/incidents': typeof IncidentsRoute
   '/risk-prediction': typeof RiskPredictionRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
   '/cargo': typeof CargoRoute
+  '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
   '/incidents': typeof IncidentsRoute
   '/risk-prediction': typeof RiskPredictionRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
   '/cargo': typeof CargoRoute
+  '/demand-forecasting': typeof DemandForecastingRoute
   '/field-reports': typeof FieldReportsRoute
   '/incidents': typeof IncidentsRoute
   '/risk-prediction': typeof RiskPredictionRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility-map'
     | '/cargo'
+    | '/demand-forecasting'
     | '/field-reports'
     | '/incidents'
     | '/risk-prediction'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility-map'
     | '/cargo'
+    | '/demand-forecasting'
     | '/field-reports'
     | '/incidents'
     | '/risk-prediction'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility-map'
     | '/cargo'
+    | '/demand-forecasting'
     | '/field-reports'
     | '/incidents'
     | '/risk-prediction'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessibilityMapRoute: typeof AccessibilityMapRoute
   CargoRoute: typeof CargoRoute
+  DemandForecastingRoute: typeof DemandForecastingRoute
   FieldReportsRoute: typeof FieldReportsRoute
   IncidentsRoute: typeof IncidentsRoute
   RiskPredictionRoute: typeof RiskPredictionRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/cargo'
       fullPath: '/cargo'
       preLoaderRoute: typeof CargoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demand-forecasting': {
+      id: '/demand-forecasting'
+      path: '/demand-forecasting'
+      fullPath: '/demand-forecasting'
+      preLoaderRoute: typeof DemandForecastingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/field-reports': {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessibilityMapRoute: AccessibilityMapRoute,
   CargoRoute: CargoRoute,
+  DemandForecastingRoute: DemandForecastingRoute,
   FieldReportsRoute: FieldReportsRoute,
   IncidentsRoute: IncidentsRoute,
   RiskPredictionRoute: RiskPredictionRoute,
