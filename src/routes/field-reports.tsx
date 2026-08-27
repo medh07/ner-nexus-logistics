@@ -4,7 +4,7 @@ import {
   Construction,
   Waves,
   Mountain,
-  Bridge,
+  Landmark,
   Car,
   CircleAlert,
   MapPin,
@@ -38,7 +38,7 @@ const TYPES = [
   { id: "blocked", label: "Road Blocked", icon: Construction },
   { id: "flood", label: "Flood", icon: Waves },
   { id: "landslide", label: "Landslide", icon: Mountain },
-  { id: "bridge", label: "Bridge Damaged", icon: Bridge },
+  { id: "bridge", label: "Bridge Damaged", icon: Landmark },
   { id: "accident", label: "Accident", icon: Car },
   { id: "other", label: "Other", icon: CircleAlert },
 ];

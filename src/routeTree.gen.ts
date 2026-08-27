@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccessibilityMapRouteImport } from './routes/accessibility-map'
 import { Route as CargoRouteImport } from './routes/cargo'
+import { Route as FieldReportsRouteImport } from './routes/field-reports'
 import { Route as RouteIntelligenceRouteImport } from './routes/route-intelligence'
 import { Route as VehicleTrackingRouteImport } from './routes/vehicle-tracking'
 
@@ -30,6 +31,11 @@ const CargoRoute = CargoRouteImport.update({
   path: '/cargo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FieldReportsRoute = FieldReportsRouteImport.update({
+  id: '/field-reports',
+  path: '/field-reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RouteIntelligenceRoute = RouteIntelligenceRouteImport.update({
   id: '/route-intelligence',
   path: '/route-intelligence',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
   '/cargo': typeof CargoRoute
+  '/field-reports': typeof FieldReportsRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
   '/cargo': typeof CargoRoute
+  '/field-reports': typeof FieldReportsRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
 }
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
   '/cargo': typeof CargoRoute
+  '/field-reports': typeof FieldReportsRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
 }
@@ -69,6 +78,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility-map'
     | '/cargo'
+    | '/field-reports'
     | '/route-intelligence'
     | '/vehicle-tracking'
   fileRoutesByTo: FileRoutesByTo
@@ -76,6 +86,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility-map'
     | '/cargo'
+    | '/field-reports'
     | '/route-intelligence'
     | '/vehicle-tracking'
   id:
@@ -83,6 +94,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility-map'
     | '/cargo'
+    | '/field-reports'
     | '/route-intelligence'
     | '/vehicle-tracking'
   fileRoutesById: FileRoutesById
@@ -91,6 +103,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessibilityMapRoute: typeof AccessibilityMapRoute
   CargoRoute: typeof CargoRoute
+  FieldReportsRoute: typeof FieldReportsRoute
   RouteIntelligenceRoute: typeof RouteIntelligenceRoute
   VehicleTrackingRoute: typeof VehicleTrackingRoute
 }
@@ -118,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CargoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/field-reports': {
+      id: '/field-reports'
+      path: '/field-reports'
+      fullPath: '/field-reports'
+      preLoaderRoute: typeof FieldReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/route-intelligence': {
       id: '/route-intelligence'
       path: '/route-intelligence'
@@ -139,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessibilityMapRoute: AccessibilityMapRoute,
   CargoRoute: CargoRoute,
+  FieldReportsRoute: FieldReportsRoute,
   RouteIntelligenceRoute: RouteIntelligenceRoute,
   VehicleTrackingRoute: VehicleTrackingRoute,
 }
