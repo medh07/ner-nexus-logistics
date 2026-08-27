@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccessibilityMapRouteImport } from './routes/accessibility-map'
+import { Route as CargoRouteImport } from './routes/cargo'
+import { Route as DemandForecastingRouteImport } from './routes/demand-forecasting'
+import { Route as FieldReportsRouteImport } from './routes/field-reports'
+import { Route as HubsRouteImport } from './routes/hubs'
+import { Route as IncidentsRouteImport } from './routes/incidents'
+import { Route as NetworkPerformanceRouteImport } from './routes/network-performance'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as RiskPredictionRouteImport } from './routes/risk-prediction'
+import { Route as RouteIntelligenceRouteImport } from './routes/route-intelligence'
+import { Route as VehicleTrackingRouteImport } from './routes/vehicle-tracking'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccessibilityMapRoute = AccessibilityMapRouteImport.update({
+  id: '/accessibility-map',
+  path: '/accessibility-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CargoRoute = CargoRouteImport.update({
+  id: '/cargo',
+  path: '/cargo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemandForecastingRoute = DemandForecastingRouteImport.update({
+  id: '/demand-forecasting',
+  path: '/demand-forecasting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FieldReportsRoute = FieldReportsRouteImport.update({
+  id: '/field-reports',
+  path: '/field-reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HubsRoute = HubsRouteImport.update({
+  id: '/hubs',
+  path: '/hubs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncidentsRoute = IncidentsRouteImport.update({
+  id: '/incidents',
+  path: '/incidents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NetworkPerformanceRoute = NetworkPerformanceRouteImport.update({
+  id: '/network-performance',
+  path: '/network-performance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RiskPredictionRoute = RiskPredictionRouteImport.update({
+  id: '/risk-prediction',
+  path: '/risk-prediction',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RouteIntelligenceRoute = RouteIntelligenceRouteImport.update({
+  id: '/route-intelligence',
+  path: '/route-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VehicleTrackingRoute = VehicleTrackingRouteImport.update({
+  id: '/vehicle-tracking',
+  path: '/vehicle-tracking',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accessibility-map': typeof AccessibilityMapRoute
+  '/cargo': typeof CargoRoute
+  '/demand-forecasting': typeof DemandForecastingRoute
+  '/field-reports': typeof FieldReportsRoute
+  '/hubs': typeof HubsRoute
+  '/incidents': typeof IncidentsRoute
+  '/network-performance': typeof NetworkPerformanceRoute
+  '/reports': typeof ReportsRoute
+  '/risk-prediction': typeof RiskPredictionRoute
+  '/route-intelligence': typeof RouteIntelligenceRoute
+  '/vehicle-tracking': typeof VehicleTrackingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accessibility-map': typeof AccessibilityMapRoute
+  '/cargo': typeof CargoRoute
+  '/demand-forecasting': typeof DemandForecastingRoute
+  '/field-reports': typeof FieldReportsRoute
+  '/hubs': typeof HubsRoute
+  '/incidents': typeof IncidentsRoute
+  '/network-performance': typeof NetworkPerformanceRoute
+  '/reports': typeof ReportsRoute
+  '/risk-prediction': typeof RiskPredictionRoute
+  '/route-intelligence': typeof RouteIntelligenceRoute
+  '/vehicle-tracking': typeof VehicleTrackingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/accessibility-map': typeof AccessibilityMapRoute
+  '/cargo': typeof CargoRoute
+  '/demand-forecasting': typeof DemandForecastingRoute
+  '/field-reports': typeof FieldReportsRoute
+  '/hubs': typeof HubsRoute
+  '/incidents': typeof IncidentsRoute
+  '/network-performance': typeof NetworkPerformanceRoute
+  '/reports': typeof ReportsRoute
+  '/risk-prediction': typeof RiskPredictionRoute
+  '/route-intelligence': typeof RouteIntelligenceRoute
+  '/vehicle-tracking': typeof VehicleTrackingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/accessibility-map'
+    | '/cargo'
+    | '/demand-forecasting'
+    | '/field-reports'
+    | '/hubs'
+    | '/incidents'
+    | '/network-performance'
+    | '/reports'
+    | '/risk-prediction'
+    | '/route-intelligence'
+    | '/vehicle-tracking'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/accessibility-map'
+    | '/cargo'
+    | '/demand-forecasting'
+    | '/field-reports'
+    | '/hubs'
+    | '/incidents'
+    | '/network-performance'
+    | '/reports'
+    | '/risk-prediction'
+    | '/route-intelligence'
+    | '/vehicle-tracking'
+  id:
+    | '__root__'
+    | '/'
+    | '/accessibility-map'
+    | '/cargo'
+    | '/demand-forecasting'
+    | '/field-reports'
+    | '/hubs'
+    | '/incidents'
+    | '/network-performance'
+    | '/reports'
+    | '/risk-prediction'
+    | '/route-intelligence'
+    | '/vehicle-tracking'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccessibilityMapRoute: typeof AccessibilityMapRoute
+  CargoRoute: typeof CargoRoute
+  DemandForecastingRoute: typeof DemandForecastingRoute
+  FieldReportsRoute: typeof FieldReportsRoute
+  HubsRoute: typeof HubsRoute
+  IncidentsRoute: typeof IncidentsRoute
+  NetworkPerformanceRoute: typeof NetworkPerformanceRoute
+  ReportsRoute: typeof ReportsRoute
+  RiskPredictionRoute: typeof RiskPredictionRoute
+  RouteIntelligenceRoute: typeof RouteIntelligenceRoute
+  VehicleTrackingRoute: typeof VehicleTrackingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/accessibility-map': {
+      id: '/accessibility-map'
+      path: '/accessibility-map'
+      fullPath: '/accessibility-map'
+      preLoaderRoute: typeof AccessibilityMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cargo': {
+      id: '/cargo'
+      path: '/cargo'
+      fullPath: '/cargo'
+      preLoaderRoute: typeof CargoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demand-forecasting': {
+      id: '/demand-forecasting'
+      path: '/demand-forecasting'
+      fullPath: '/demand-forecasting'
+      preLoaderRoute: typeof DemandForecastingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/field-reports': {
+      id: '/field-reports'
+      path: '/field-reports'
+      fullPath: '/field-reports'
+      preLoaderRoute: typeof FieldReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hubs': {
+      id: '/hubs'
+      path: '/hubs'
+      fullPath: '/hubs'
+      preLoaderRoute: typeof HubsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incidents': {
+      id: '/incidents'
+      path: '/incidents'
+      fullPath: '/incidents'
+      preLoaderRoute: typeof IncidentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/network-performance': {
+      id: '/network-performance'
+      path: '/network-performance'
+      fullPath: '/network-performance'
+      preLoaderRoute: typeof NetworkPerformanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/risk-prediction': {
+      id: '/risk-prediction'
+      path: '/risk-prediction'
+      fullPath: '/risk-prediction'
+      preLoaderRoute: typeof RiskPredictionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/route-intelligence': {
+      id: '/route-intelligence'
+      path: '/route-intelligence'
+      fullPath: '/route-intelligence'
+      preLoaderRoute: typeof RouteIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vehicle-tracking': {
+      id: '/vehicle-tracking'
+      path: '/vehicle-tracking'
+      fullPath: '/vehicle-tracking'
+      preLoaderRoute: typeof VehicleTrackingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccessibilityMapRoute: AccessibilityMapRoute,
+  CargoRoute: CargoRoute,
+  DemandForecastingRoute: DemandForecastingRoute,
+  FieldReportsRoute: FieldReportsRoute,
+  HubsRoute: HubsRoute,
+  IncidentsRoute: IncidentsRoute,
+  NetworkPerformanceRoute: NetworkPerformanceRoute,
+  ReportsRoute: ReportsRoute,
+  RiskPredictionRoute: RiskPredictionRoute,
+  RouteIntelligenceRoute: RouteIntelligenceRoute,
+  VehicleTrackingRoute: VehicleTrackingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
