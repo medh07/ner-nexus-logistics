@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccessibilityMapRouteImport } from './routes/accessibility-map'
+import { Route as RouteIntelligenceRouteImport } from './routes/route-intelligence'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const AccessibilityMapRoute = AccessibilityMapRouteImport.update({
   path: '/accessibility-map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RouteIntelligenceRoute = RouteIntelligenceRouteImport.update({
+  id: '/route-intelligence',
+  path: '/route-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
+  '/route-intelligence': typeof RouteIntelligenceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
+  '/route-intelligence': typeof RouteIntelligenceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/accessibility-map': typeof AccessibilityMapRoute
+  '/route-intelligence': typeof RouteIntelligenceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/accessibility-map'
+  fullPaths: '/' | '/accessibility-map' | '/route-intelligence'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/accessibility-map'
-  id: '__root__' | '/' | '/accessibility-map'
+  to: '/' | '/accessibility-map' | '/route-intelligence'
+  id: '__root__' | '/' | '/accessibility-map' | '/route-intelligence'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessibilityMapRoute: typeof AccessibilityMapRoute
+  RouteIntelligenceRoute: typeof RouteIntelligenceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccessibilityMapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/route-intelligence': {
+      id: '/route-intelligence'
+      path: '/route-intelligence'
+      fullPath: '/route-intelligence'
+      preLoaderRoute: typeof RouteIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessibilityMapRoute: AccessibilityMapRoute,
+  RouteIntelligenceRoute: RouteIntelligenceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
