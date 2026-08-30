@@ -33,7 +33,7 @@ function HubsPage() {
     <div className="space-y-4">
       <PageHeader
         title="Hubs & Infrastructure"
-        subtitle="Hub capacity, cold-chain readiness and corridor closure simulation"
+        subtitle="Hub capacity, utilization and corridor closure simulation"
       />
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
