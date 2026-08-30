@@ -152,6 +152,10 @@
   background: oklch(0.15 0.03 258);
   font-family: var(--font-sans);
 }
+.ner-basemap {
+  filter: invert(1) hue-rotate(185deg) brightness(0.92) contrast(0.88) saturate(0.7);
+}
+
 .leaflet-control-attribution {
   background: rgba(10, 16, 28, 0.7) !important;
   color: #7c8aa5 !important;
