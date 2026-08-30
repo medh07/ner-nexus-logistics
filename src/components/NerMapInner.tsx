@@ -79,9 +79,11 @@ export default function NerMapInner({
     >
       <Resizer />
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution="&copy; OpenStreetMap contributors"
+        className="ner-basemap"
       />
+
 
       {showCorridors &&
         l.roadRisk &&
