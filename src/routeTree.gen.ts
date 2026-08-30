@@ -20,6 +20,7 @@ import { Route as NetworkPerformanceRouteImport } from './routes/network-perform
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as RiskPredictionRouteImport } from './routes/risk-prediction'
 import { Route as RouteIntelligenceRouteImport } from './routes/route-intelligence'
+import { Route as UsersRouteImport } from './routes/users'
 import { Route as VehicleTrackingRouteImport } from './routes/vehicle-tracking'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,11 @@ const RouteIntelligenceRoute = RouteIntelligenceRouteImport.update({
   path: '/route-intelligence',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UsersRoute = UsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VehicleTrackingRoute = VehicleTrackingRouteImport.update({
   id: '/vehicle-tracking',
   path: '/vehicle-tracking',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/reports': typeof ReportsRoute
   '/risk-prediction': typeof RiskPredictionRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
+  '/users': typeof UsersRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
 }
 export interface FileRoutesByTo {
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/reports': typeof ReportsRoute
   '/risk-prediction': typeof RiskPredictionRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
+  '/users': typeof UsersRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
 }
 export interface FileRoutesById {
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/reports': typeof ReportsRoute
   '/risk-prediction': typeof RiskPredictionRoute
   '/route-intelligence': typeof RouteIntelligenceRoute
+  '/users': typeof UsersRoute
   '/vehicle-tracking': typeof VehicleTrackingRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/risk-prediction'
     | '/route-intelligence'
+    | '/users'
     | '/vehicle-tracking'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/risk-prediction'
     | '/route-intelligence'
+    | '/users'
     | '/vehicle-tracking'
   id:
     | '__root__'
@@ -168,6 +179,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/risk-prediction'
     | '/route-intelligence'
+    | '/users'
     | '/vehicle-tracking'
   fileRoutesById: FileRoutesById
 }
@@ -183,6 +195,7 @@ export interface RootRouteChildren {
   ReportsRoute: typeof ReportsRoute
   RiskPredictionRoute: typeof RiskPredictionRoute
   RouteIntelligenceRoute: typeof RouteIntelligenceRoute
+  UsersRoute: typeof UsersRoute
   VehicleTrackingRoute: typeof VehicleTrackingRoute
 }
 
@@ -265,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RouteIntelligenceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/users': {
+      id: '/users'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof UsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vehicle-tracking': {
       id: '/vehicle-tracking'
       path: '/vehicle-tracking'
@@ -287,6 +307,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReportsRoute: ReportsRoute,
   RiskPredictionRoute: RiskPredictionRoute,
   RouteIntelligenceRoute: RouteIntelligenceRoute,
+  UsersRoute: UsersRoute,
   VehicleTrackingRoute: VehicleTrackingRoute,
 }
 export const routeTree = rootRouteImport
