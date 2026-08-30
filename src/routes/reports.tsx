@@ -118,7 +118,7 @@ function ReportsPage() {
                 <Database className="h-3.5 w-3.5 text-purple" />
                 {d.name}
               </span>
-              <span className="text-[11px] text-muted-foreground">{d.detail}</span>
+              <span className="text-[11px] text-muted-foreground">{d.scope}</span>
               <span className="text-[11px] text-ok">{d.status}</span>
             </li>
           ))}

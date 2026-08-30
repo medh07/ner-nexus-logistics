@@ -30,7 +30,7 @@ const TOGGLES = [
 ];
 
 function SettingsPage() {
-  const [language, setLanguage] = useState(LANGUAGES[0]);
+  const [language, setLanguage] = useState(LANGUAGES[0]!);
   const [threshold, setThreshold] = useState("65");
   const [on, setOn] = useState<Record<string, boolean>>({
     alerts: true,
@@ -72,7 +72,7 @@ function SettingsPage() {
                   <p className="mt-0.5 text-[11px] text-muted-foreground">{t.desc}</p>
                 </div>
                 <Switch
-                  checked={on[t.key]}
+                  checked={!!on[t.key]}
                   onCheckedChange={(v) => setOn((prev) => ({ ...prev, [t.key]: v }))}
                 />
               </li>
@@ -87,7 +87,7 @@ function SettingsPage() {
           {DATA_SOURCES.map((d) => (
             <li key={d.name} className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-xs">
               <span className="font-medium">{d.name}</span>
-              <span className="text-[11px] text-muted-foreground">{d.detail}</span>
+              <span className="text-[11px] text-muted-foreground">{d.scope}</span>
               <span className="text-[11px] text-ok">{d.status}</span>
             </li>
           ))}
