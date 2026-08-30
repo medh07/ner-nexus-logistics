@@ -56,7 +56,7 @@ function AccessibilityMapPage() {
     warehouses: true,
     vehicles: true,
   });
-  const [selected, setSelected] = useState<Corridor | null>(CORRIDORS[0]);
+  const [selected, setSelected] = useState<Corridor | null>(CORRIDORS[0] ?? null);
 
   return (
     <div className="space-y-4">

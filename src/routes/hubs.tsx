@@ -48,7 +48,7 @@ function HubsPage() {
           value={`${Math.round(HUBS.reduce((a, h) => a + h.utilization, 0) / HUBS.length)}%`}
           tone="warn"
         />
-        <StatTile label="Cold-Chain Hubs" value={String(HUBS.filter((h) => h.coldChain).length)} tone="ok" />
+        <StatTile label="Avg Hub Accessibility" value={`${Math.round(HUBS.reduce((a, h) => a + h.accessibility, 0) / HUBS.length)}/100`} tone="ok" />
       </div>
 
       {/* What-if simulator */}
@@ -135,7 +135,7 @@ function HubsPage() {
           <table className="w-full min-w-[46rem] text-sm">
             <thead>
               <tr className="border-b border-border/70 text-left">
-                {["Hub", "State", "Type", "Capacity", "Utilization", "Cold Chain"].map((h) => (
+                {["Hub", "State", "Connecting Roads", "Capacity", "Utilization", "Accessibility"].map((h) => (
                   <th key={h} className="label-xs px-4 py-2.5">
                     {h}
                   </th>
@@ -152,7 +152,7 @@ function HubsPage() {
                     </span>
                   </td>
                   <td className="px-4 py-2.5 text-xs text-muted-foreground">{h.state}</td>
-                  <td className="px-4 py-2.5 text-xs">{h.type}</td>
+                  <td className="px-4 py-2.5 text-xs">{h.nearbyRoads.join(", ")}</td>
                   <td className="px-4 py-2.5 text-xs">{h.capacityTons.toLocaleString()} T</td>
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -164,10 +164,10 @@ function HubsPage() {
                     <span
                       className={cn(
                         "rounded-md border px-1.5 py-0.5 text-[10px] font-semibold",
-                        h.coldChain ? "border-ok/30 bg-ok/12 text-ok" : "border-border text-muted-foreground",
+                        h.accessibility >= 70 ? "border-ok/30 bg-ok/12 text-ok" : "border-warn/30 bg-warn/12 text-warn",
                       )}
                     >
-                      {h.coldChain ? "Available" : "None"}
+                      {h.accessibility}/100
                     </span>
                   </td>
                 </tr>
