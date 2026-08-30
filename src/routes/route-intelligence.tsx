@@ -45,8 +45,8 @@ function RouteIntelligencePage() {
   const priority = CARGO_PRIORITY[cargo] ?? 50;
 
   const ranked = useMemo(() => rankRoutes(ROUTE_OPTIONS, priority), [priority]);
-  const best = ranked[0];
-  const fastest = [...ROUTE_OPTIONS].sort((a, b) => a.hours - b.hours)[0];
+  const best = ranked[0]!;
+  const fastest = [...ROUTE_OPTIONS].sort((a, b) => a.hours - b.hours)[0]!;
   const [activeId, setActiveId] = useState(best.id);
   const active = ROUTE_OPTIONS.find((r) => r.id === activeId) ?? best;
 
