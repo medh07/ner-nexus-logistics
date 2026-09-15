@@ -46,6 +46,37 @@ export const Route = createFileRoute("/route-intelligence")({
 
 const CARGO_TYPES = Object.keys(CARGO_PRIORITY);
 
+/* ------------------------------------------------------------------ */
+/* Environmental simulation layer (front-end only, non-destructive)   */
+/* ------------------------------------------------------------------ */
+
+type SimEvent = "off" | "rain" | "landslide";
+
+/** Multipliers applied per route id for each simulated event. */
+const SIM_IMPACT: Record<Exclude<SimEvent, "off">, Record<string, number>> = {
+  rain: { A: 1.3, C: 1.2 },
+  landslide: { A: 1.4 },
+};
+
+const SIM_LABEL: Record<Exclude<SimEvent, "off">, string> = {
+  rain: "Heavy Rainfall",
+  landslide: "Landslide Incident",
+};
+
+function simulateRoutes(event: SimEvent) {
+  if (event === "off") return ROUTE_OPTIONS;
+  const impact = SIM_IMPACT[event];
+  return ROUTE_OPTIONS.map((r) => {
+    const mult = impact[r.id];
+    if (!mult) return r;
+    return {
+      ...r,
+      riskScore: Math.min(100, Math.round(r.riskScore * mult)),
+      disruptionProbability: Math.min(95, Math.round(r.disruptionProbability * mult)),
+    };
+  });
+}
+
 function RouteIntelligencePage() {
   const cities = HUBS.map((h) => h.name);
   const [origin, setOrigin] = useState("Guwahati");
@@ -53,11 +84,30 @@ function RouteIntelligencePage() {
   const [cargo, setCargo] = useState("Medical Supplies");
   const priority = CARGO_PRIORITY[cargo] ?? 50;
 
-  const ranked = useMemo(() => rankRoutes(ROUTE_OPTIONS, priority), [priority]);
+  const [simEvent, setSimEvent] = useState<SimEvent>("off");
+  const [analyzing, setAnalyzing] = useState(false);
+
+  useEffect(() => {
+    if (simEvent === "off") return;
+    setAnalyzing(true);
+    const t = setTimeout(() => setAnalyzing(false), 900);
+    return () => clearTimeout(t);
+  }, [simEvent]);
+
+  // Displayed routes: original data when off, temporary adjusted copy when on.
+  const displayed = useMemo(() => simulateRoutes(simEvent), [simEvent]);
+  const affectedIds = useMemo(
+    () => (simEvent === "off" ? new Set<string>() : new Set(Object.keys(SIM_IMPACT[simEvent]))),
+    [simEvent],
+  );
+
+  const ranked = useMemo(() => rankRoutes(displayed, priority), [displayed, priority]);
   const best = ranked[0]!;
-  const fastest = [...ROUTE_OPTIONS].sort((a, b) => a.hours - b.hours)[0]!;
+  const fastest = [...displayed].sort((a, b) => a.hours - b.hours)[0]!;
+  const originalBest = rankRoutes(ROUTE_OPTIONS, priority)[0]!;
+  const recommendationSwitched = simEvent !== "off" && best.id !== originalBest.id;
   const [activeId, setActiveId] = useState(best.id);
-  const active = ROUTE_OPTIONS.find((r) => r.id === activeId) ?? best;
+  const active = displayed.find((r) => r.id === activeId) ?? best;
 
   return (
     <div className="space-y-4">
