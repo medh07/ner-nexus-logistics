@@ -221,7 +221,11 @@ function RouteIntelligencePage() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <p className="text-sm font-semibold">{r.label}</p>
-                    {recommended ? (
+                    {affectedIds.has(r.id) ? (
+                      <span className="flex shrink-0 items-center gap-1 rounded-md border border-danger/40 bg-danger/12 px-1.5 py-0.5 text-[10px] font-bold text-danger">
+                        <TriangleAlert className="h-3 w-3" /> {SIM_LABEL[simEvent as Exclude<SimEvent, "off">].toUpperCase()}
+                      </span>
+                    ) : recommended ? (
                       <span className="flex shrink-0 items-center gap-1 rounded-md border border-ok/35 bg-ok/12 px-1.5 py-0.5 text-[10px] font-bold text-ok">
                         <CheckCircle2 className="h-3 w-3" /> BEST
                       </span>
