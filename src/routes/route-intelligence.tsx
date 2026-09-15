@@ -269,6 +269,22 @@ function RouteIntelligencePage() {
                 <RouteIcon className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
                 {recommendationReason(best, fastest, cargo, priority)}
               </p>
+              {simEvent !== "off" && !analyzing ? (
+                <p className="flex gap-2 rounded-lg border border-warn/30 bg-warn/10 p-3 text-xs leading-relaxed text-warn">
+                  <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+                  {simEvent === "rain"
+                    ? `AI detected elevated flood and waterlogging risk due to simulated heavy rainfall on ${[...affectedIds].map((id) => `Route ${id}`).join(", ")}. ${
+                        recommendationSwitched
+                          ? `The previous best route now exceeds safe thresholds — recommending ${best.label} as the safer alternative.`
+                          : `${best.label} remains the safest option under current conditions.`
+                      }`
+                    : `AI detected increased landslide risk along ${[...affectedIds].map((id) => `Route ${id}`).join(", ")} due to the simulated slope failure. ${
+                        recommendationSwitched
+                          ? `Recommending alternative safer route: ${best.label}.`
+                          : `${best.label} remains the recommended corridor.`
+                      }`}
+                </p>
+              ) : null}
             </div>
           </Panel>
         </div>
