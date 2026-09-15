@@ -136,6 +136,47 @@ function RouteIntelligencePage() {
               Prototype computation over synthetic data. Cost = distance + ETA + risk penalty × cargo
               priority.
             </PrototypeNote>
+
+            <div className="space-y-2 rounded-lg border border-border bg-background/40 p-3">
+              <p className="label-xs">Simulate Environmental Event</p>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => setSimEvent(simEvent === "rain" ? "off" : "rain")}
+                  className={cn(
+                    "flex items-center justify-center gap-1.5 rounded-lg border px-2 py-2 text-[11px] font-medium transition-colors",
+                    simEvent === "rain"
+                      ? "border-warn/50 bg-warn/12 text-warn"
+                      : "border-border bg-background/40 text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  <CloudRain className="h-3.5 w-3.5" /> Heavy Rainfall
+                </button>
+                <button
+                  onClick={() => setSimEvent(simEvent === "landslide" ? "off" : "landslide")}
+                  className={cn(
+                    "flex items-center justify-center gap-1.5 rounded-lg border px-2 py-2 text-[11px] font-medium transition-colors",
+                    simEvent === "landslide"
+                      ? "border-danger/50 bg-danger/12 text-danger"
+                      : "border-border bg-background/40 text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  <Mountain className="h-3.5 w-3.5" /> Landslide
+                </button>
+              </div>
+              {analyzing ? (
+                <p className="flex items-center gap-1.5 text-[11px] text-cyan">
+                  <Loader2 className="h-3 w-3 animate-spin" /> Analyzing environmental impact...
+                </p>
+              ) : null}
+              {simEvent !== "off" && !analyzing ? (
+                <button
+                  onClick={() => setSimEvent("off")}
+                  className="flex w-full items-center justify-center gap-1.5 rounded-lg border border-border bg-background/40 px-2 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <RotateCcw className="h-3 w-3" /> Reset Simulation
+                </button>
+              ) : null}
+            </div>
           </div>
         </Panel>
 
