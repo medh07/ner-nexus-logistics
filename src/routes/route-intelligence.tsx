@@ -190,10 +190,16 @@ function RouteIntelligencePage() {
               <NerMap
                 showCorridors={false}
                 layers={{ warehouses: true, vehicles: false, incidents: true }}
-                extraPaths={ROUTE_OPTIONS.map((r) => ({
+                extraPaths={displayed.map((r) => ({
                   id: r.id,
                   path: r.path,
-                  color: r.id === active.id ? "#22d3ee" : r.riskScore >= 65 ? "#f43f5e" : "#64748b",
+                  color: affectedIds.has(r.id)
+                    ? "#f43f5e"
+                    : r.id === active.id
+                      ? "#22d3ee"
+                      : r.riskScore >= 65
+                        ? "#f43f5e"
+                        : "#64748b",
                   dashed: r.id !== active.id,
                 }))}
               />
