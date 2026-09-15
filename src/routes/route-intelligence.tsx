@@ -1,6 +1,15 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Brain, CheckCircle2, Route as RouteIcon } from "lucide-react";
+import {
+  Brain,
+  CheckCircle2,
+  CloudRain,
+  Loader2,
+  Mountain,
+  RotateCcw,
+  Route as RouteIcon,
+  TriangleAlert,
+} from "lucide-react";
 import { PageHeader, Panel, PanelHeader, PrototypeNote, StatTile } from "@/components/kit";
 import { NerMap } from "@/components/NerMap";
 import {
